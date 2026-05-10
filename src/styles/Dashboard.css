@@ -1,0 +1,130 @@
+.dashboard-container {
+    padding: 30px 40px;
+    background: #f0f2f5;
+    min-height: calc(100vh - 64px);
+}
+
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.dashboard-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+.dashboard-subtitle {
+    color: #888;
+    font-size: 15px;
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 16px;
+    color: #888;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e0e0e0;
+    border-top: 4px solid #4f46e5;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Cards */
+.cards-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.count-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    flex: 1;
+    min-width: 200px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 5px solid transparent;
+}
+
+.count-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.count-card.blue  { border-left-color: #4f46e5; }
+.count-card.purple { border-left-color: #7c3aed; }
+.count-card.green  { border-left-color: #10b981; }
+
+.card-icon {
+    font-size: 44px;
+}
+
+.card-info h2 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.card-info p {
+    color: #888;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Graph */
+.graph-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.graph-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+.graph-subtitle {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+    }
+
+    .count-card {
+        width: 100%;
+    }
+}
