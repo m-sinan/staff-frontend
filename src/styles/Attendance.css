@@ -201,6 +201,7 @@
 
 /* Responsive */
 @media (max-width: 600px) {
+    
     .attendance-container {
         padding: 20px;
     }
