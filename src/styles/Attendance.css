@@ -1,7 +1,10 @@
 .attendance-container {
     padding: 30px 40px;
     background: #f0f2f5;
-    min-height: calc(100vh - 64px );
+    min-height: calc(100vh - 64px);
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .attendance-header {
@@ -10,7 +13,7 @@
     align-items: center;
     margin-bottom: 24px;
 }
-/* =---- */
+
 .attendance-title {
     font-size: 28px;
     font-weight: 700;
@@ -47,10 +50,13 @@
     padding: 20px 24px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.07);
     display: flex;
+    flex-direction: row;
     gap: 20px;
     align-items: flex-end;
     margin-bottom: 24px;
     flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .filter-group {
@@ -142,6 +148,7 @@
 .attendance-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 700px;
 }
 
 .attendance-table thead {
@@ -156,11 +163,16 @@
     color: #aaa;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .attendance-table tbody tr {
     border-bottom: 1px solid #f0f0f0;
     transition: background 0.15s;
+}
+
+.attendance-table tbody tr:last-child {
+    border-bottom: none;
 }
 
 .attendance-table tbody tr:hover {
@@ -171,6 +183,7 @@
     padding: 14px 18px;
     font-size: 14px;
     color: #333;
+    white-space: nowrap;
 }
 
 .id-badge {
@@ -200,8 +213,7 @@
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-    
+@media (max-width: 768px) {
     .attendance-container {
         padding: 20px;
     }
@@ -212,23 +224,11 @@
         gap: 12px;
     }
 
-.filter-card {
-    background: white;
-    border-radius: 16px;
-    padding: 20px 24px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: flex-end;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-    width: 100%;
-    box-sizing: border-box;
-}
+    .filter-card {
+        flex-direction: column;
+    }
 
-.filter-group {
-    flex: 1;
-    min-width: 200px;
+    .filter-group {
+        min-width: 100%;
+    }
 }
-}    
