@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import axios from '../utils/axios'
 import '../styles/Login.css'
@@ -38,7 +39,8 @@ function Login() {
         <div className='login-container'>
             <div className='login-card'>
                 <h1 className='login-title'>Staff Management</h1>
-                <p className='login-subtitle'>Owner Login</p>
+                <Link to='/dashboard' className='login-subtitle'><p className='login-subtitle'>Owner Login</p></Link>
+                
 
                 {error && <div className='login-error'>{error}</div>}
 
