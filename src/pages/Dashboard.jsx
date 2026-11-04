@@ -2,21 +2,12 @@ import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import axios from "../utils/axios";
 import "../styles/Dashboard.css";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import MonthlyReport from "../components/MonthlyReport";
 
 function Dashboard() {
   const [staffCount, setStaffCount] = useState(0);
   const [attendanceCount, setAttendanceCount] = useState(0);
-  const [presentCount, setPresentCount] = useState(0);
-  const [monthlyData, setMonthlyData] = useState([]);
+  const [allAttendance, setAllAttendance] = useState([]);
   const [thisMonthCount, setThisMonthCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -53,49 +44,13 @@ function Dashboard() {
       }).length;
       setThisMonthCount(thisMonth);
 
-      // Build monthly data for graph
-      const monthly = buildMonthlyData(allAttendance);
-      setMonthlyData(monthly);
+      // Keep all records for the monthly report
+      setAllAttendance(allAttendance);
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
-  };
-
-  const buildMonthlyData = (attendanceList) => {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-
-    // Start with all months at 0
-    const counts = {};
-    months.forEach((m) => {
-      counts[m] = 0;
-    });
-
-    // Count attendance per month
-    attendanceList.forEach((a) => {
-      const month = months[new Date(a.date).getMonth()];
-      counts[month]++;
-    });
-
-    // Convert to array recharts understands
-    return months.map((m) => ({
-      month: m,
-      attendance: counts[m],
-    }));
   };
 
   return (
@@ -143,45 +98,8 @@ function Dashboard() {
 </div>
             </div>
 
-            {/* Monthly Graph */}
-            <div className="graph-card">
-              <h2 className="graph-title">📊 Monthly Attendance Report</h2>
-              <p className="graph-subtitle">
-                Number of attendance marked each month
-              </p>
-
-              <ResponsiveContainer width="100%" height={320}>
-                <BarChart
-                  data={monthlyData}
-                  margin={{
-                    top: 10,
-                    right: 20,
-                    left: 0,
-                    bottom: 0,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis
-                    dataKey="month"
-                    tick={{ fill: "#888", fontSize: 13 }}
-                  />
-                  <YAxis tick={{ fill: "#888", fontSize: 13 }} />
-                  <Tooltip
-                    contentStyle={{
-                      borderRadius: "8px",
-                      border: "none",
-                      boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-                    }}
-                  />
-                  <Bar
-                    dataKey="attendance"
-                    fill="#4f46e5"
-                    radius={[6, 6, 0, 0]}
-                    name="Attendance"
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+            {/* Monthly Attendance Report */}
+            <MonthlyReport attendance={allAttendance} />
           </>
         )}
       </div>
